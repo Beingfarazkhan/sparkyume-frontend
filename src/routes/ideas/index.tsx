@@ -24,7 +24,7 @@ function IdeasPage() {
 
     return <div className="p-4 mx-auto max-w-(--breakpoint-xl) grid grid-cols-1 sm:grid-cols-2 gap-12">
         {ideas.map((idea) => (
-            <Link key={idea._id} to={`/ideas/${idea._id}`}>
+            <Link key={idea._id} to={`/ideas/${idea._id}` as string}>
                 <Card
                     className="flex flex-col shadow-md overflow-hidden rounded-md p-4 sm:hover:scale-105 transition"
                 >

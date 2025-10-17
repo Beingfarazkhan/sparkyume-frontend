@@ -1,8 +1,8 @@
-import { Facebook, Twitter, Linkedin, ArrowLeftIcon } from "lucide-react";
+import { Facebook, Twitter, Linkedin, } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Link, useNavigate } from "@tanstack/react-router";
+
 
 interface BlogHeaderProps {
     tags: string[];

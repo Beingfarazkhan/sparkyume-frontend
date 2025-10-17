@@ -13,6 +13,8 @@ import { Route as IdeasRouteRouteImport } from './routes/ideas/route'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IdeasIndexRouteImport } from './routes/ideas/index'
+import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as IdeasNewIndexRouteImport } from './routes/ideas/new/index'
 import { Route as IdeasIdeasIdIndexRouteImport } from './routes/ideas/$ideasId/index'
 import { Route as authRegisterIndexRouteImport } from './routes/(auth)/register/index'
@@ -37,6 +39,16 @@ const IdeasIndexRoute = IdeasIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => IdeasRouteRoute,
+} as any)
+const ContactIndexRoute = ContactIndexRouteImport.update({
+  id: '/contact/',
+  path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IdeasNewIndexRoute = IdeasNewIndexRouteImport.update({
   id: '/new/',
@@ -67,6 +79,8 @@ const IdeasIdeasIdEditRoute = IdeasIdeasIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ideas': typeof IdeasRouteRouteWithChildren
+  '/about': typeof AboutIndexRoute
+  '/contact': typeof ContactIndexRoute
   '/ideas/': typeof IdeasIndexRoute
   '/ideas/$ideasId/edit': typeof IdeasIdeasIdEditRoute
   '/login': typeof authLoginIndexRoute
@@ -76,6 +90,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutIndexRoute
+  '/contact': typeof ContactIndexRoute
   '/ideas': typeof IdeasIndexRoute
   '/ideas/$ideasId/edit': typeof IdeasIdeasIdEditRoute
   '/login': typeof authLoginIndexRoute
@@ -88,6 +104,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(auth)': typeof authRouteRouteWithChildren
   '/ideas': typeof IdeasRouteRouteWithChildren
+  '/about/': typeof AboutIndexRoute
+  '/contact/': typeof ContactIndexRoute
   '/ideas/': typeof IdeasIndexRoute
   '/ideas/$ideasId/edit': typeof IdeasIdeasIdEditRoute
   '/(auth)/login/': typeof authLoginIndexRoute
@@ -100,6 +118,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ideas'
+    | '/about'
+    | '/contact'
     | '/ideas/'
     | '/ideas/$ideasId/edit'
     | '/login'
@@ -109,6 +129,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/contact'
     | '/ideas'
     | '/ideas/$ideasId/edit'
     | '/login'
@@ -120,6 +142,8 @@ export interface FileRouteTypes {
     | '/'
     | '/(auth)'
     | '/ideas'
+    | '/about/'
+    | '/contact/'
     | '/ideas/'
     | '/ideas/$ideasId/edit'
     | '/(auth)/login/'
@@ -132,6 +156,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authRouteRoute: typeof authRouteRouteWithChildren
   IdeasRouteRoute: typeof IdeasRouteRouteWithChildren
+  AboutIndexRoute: typeof AboutIndexRoute
+  ContactIndexRoute: typeof ContactIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,6 +189,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/ideas/'
       preLoaderRoute: typeof IdeasIndexRouteImport
       parentRoute: typeof IdeasRouteRoute
+    }
+    '/contact/': {
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/ideas/new/': {
       id: '/ideas/new/'
@@ -238,6 +278,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authRouteRoute: authRouteRouteWithChildren,
   IdeasRouteRoute: IdeasRouteRouteWithChildren,
+  AboutIndexRoute: AboutIndexRoute,
+  ContactIndexRoute: ContactIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

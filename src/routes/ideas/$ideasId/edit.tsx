@@ -38,7 +38,7 @@ function RouteComponent() {
     } else {
         return <div className='p-8'>
             <Button className="block mb-4 shadow-lg cursor-pointer hover:shadow-none">
-                <Link className="flex items-center" to={`/ideas/${ideasId}`}>
+                <Link className="flex items-center" to={`/ideas/${ideasId}` as string}>
                     <ArrowLeftIcon className="inline-block" />Back To Idea
                 </Link>
             </Button>

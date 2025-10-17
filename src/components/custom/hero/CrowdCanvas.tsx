@@ -64,7 +64,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
         };
 
         const normalWalk = ({ peep, props }: { peep: any; props: any }) => {
-            const { startX, startY, endX } = props;
+            const { startY, endX } = props;
             const xDuration = 10;
             const yDuration = 0.25;
 

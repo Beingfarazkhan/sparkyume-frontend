@@ -79,6 +79,7 @@ function IdeaDetailsPage() {
 
     try {
         const { data: idea } = useSuspenseQuery(ideaQueryOptions(ideasId));
+        if (!idea) throw new Error('Idea Not Found')
         return (
             <div className="bg-background min-h-screen rounded-2xl">
                 <div className="flex justify-between p-6 -mb-4">
@@ -98,7 +99,7 @@ function IdeaDetailsPage() {
                                     className="bg-blue-700 hover:bg-blue-800 shadow-lg hover:shadow-none"
 
                                 >
-                                    <Link className="flex items-center sm:space-x-2" to={`/ideas/${ideasId}/edit`}>
+                                    <Link className="flex items-center sm:space-x-2" to={`/ideas/${ideasId}/edit` as string}>
                                         <Edit />
                                         <p className="hidden sm:block">Edit</p>
                                     </Link>
